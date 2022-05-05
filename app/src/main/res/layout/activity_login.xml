@@ -1,101 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <Button
-        android:id="@+id/btnEntrar"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        android:text="entrar"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-    <EditText
-        android:id="@+id/edtLogin"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:contentDescription="Digite seu email"
-        android:ems="10"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.facebook.login.widget.LoginButton
-        android:id="@+id/loginButton"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
+        android:id="@+id/btnFacebookLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="196dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEntrar"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="108dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 
     <EditText
-        android:id="@+id/edtSenha"
+        android:id="@+id/edtEmail"
         android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="Digite sua senha"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="56dp"
         android:ems="10"
-        android:hint="senha"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        android:ems="10"
+        android:hint="@string/prompt_password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/login_logo" />
 
     <TextView
-        android:id="@+id/txtRegisterExplanation"
+        android:id="@+id/txtForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="58dp"
-        android:text="Não possui uma conta?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtRegister"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="140dp"
+        android:text="Esqueci minha senha"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEntrar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnFacebookLogin" />
 
     <TextView
         android:id="@+id/txtRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="58dp"
-        android:text="Registrar"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="156dp"
+        android:text="Criar uma conta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtForgotPassword" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="69dp"
+        android:text="entrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtRegisterExplanation"
-        app:layout_constraintTop_toBottomOf="@+id/btnEntrar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

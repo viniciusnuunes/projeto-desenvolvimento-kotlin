@@ -1,13 +1,9 @@
 package com.example.projeto_desenvolvimento_kotlin
 
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import com.facebook.CallbackManager
-import java.util.*
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private val callbackManager = CallbackManager.Factory.create()
@@ -18,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val loginButton: Button = findViewById(R.id.loginButton)
+        val loginButton: Button = findViewById(R.id.btnFacebookLogin)
 
 //        loginButton.setReadPermissions(Arrays.asList((EMAIL)))
 //        val loginButton: Button = findViewById(R.id.login_button)
