@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         val loginButton: Button = findViewById(R.id.btnFacebookLogin)
 
-//        loginButton.setReadPermissions(Arrays.asList((EMAIL)))
+        loginButton.setReadPermissions(Arrays.asList((EMAIL)))
 //        val loginButton: Button = findViewById(R.id.login_button)
 
 
