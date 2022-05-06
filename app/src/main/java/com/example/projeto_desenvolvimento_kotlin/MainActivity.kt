@@ -14,9 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val loginButton: Button = findViewById(R.id.btnFacebookLogin)
+//        val loginButton: Button = findViewById(R.id.btnFacebookLogin)
 
-        loginButton.setReadPermissions(Arrays.asList((EMAIL)))
+//        loginButton.setReadPermissions(Arrays.asList((EMAIL)))
 //        val loginButton: Button = findViewById(R.id.login_button)
 
 
