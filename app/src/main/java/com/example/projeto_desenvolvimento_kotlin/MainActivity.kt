@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        if(currentUser != null){
+        if (currentUser != null) {
             Log.d("User", "Usuário Autenticado")
 
         } else {
@@ -62,9 +64,38 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.menu_favorites -> {
                 setFragmentTransition(favoritesFragment)
             }
+            R.id.menu_logout -> {
+                logout()
+            }
         }
 
         return true
+    }
+
+    private fun logout() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Fazer logout")
+        builder.setMessage("Deseja desconectar da sua conta?")
+
+        builder.setPositiveButton("Sim") { dialog, which ->
+            FirebaseAuth.getInstance().signOut()
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+            Toast.makeText(applicationContext,
+                "desconectado com sucesso", Toast.LENGTH_SHORT).show()
+        }
+
+        builder.setNegativeButton("Não") { dialog, which ->
+            Toast.makeText(applicationContext,
+                "cancelado", Toast.LENGTH_SHORT).show()
+        }
+
+
+        builder.show()
+    }
+
+    private fun showAlertDialog() {
+
     }
 
 //    inner class ShowMessageAsyncTask() : AsyncTask<String, Int, String>() {
