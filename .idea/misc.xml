@@ -3,12 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.3675" />
+        <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout-v31/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2352744310575636" />
         <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout-w936dp/activity_login.xml" value="0.2301912568306011" />
+        <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/activity_authentication.xml" value="0.2546875" />
         <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/fragment_favorites.xml" value="0.36666666666666664" />
+        <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
         <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/PROJETOS/projeto-desenvolvimento-kotlin/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

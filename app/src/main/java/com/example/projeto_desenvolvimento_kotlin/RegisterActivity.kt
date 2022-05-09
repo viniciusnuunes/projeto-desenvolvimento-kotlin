@@ -36,13 +36,13 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             currentUser = task.result!!.user!!
-                            Log.d("Registering", "createUserWithEmail:success")
-                            Log.d("Registered", currentUser.uid)
-                            Log.d("Registered", email)
+                            Log.d("Register", "createUserWithEmail:success")
+                            Log.d("Register", currentUser.uid)
+                            Log.d("Register", email)
 
                             Toast.makeText(this, "Cadastro feito com sucesso", Toast.LENGTH_SHORT).show()
 
-                            val intent = Intent(this, LoginActivity::class.java)
+                            val intent = Intent(this, MainActivity::class.java)
 
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             intent.putExtra("user_id", currentUser.uid)

@@ -28,24 +28,24 @@ class LoginActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val userId = intent.getStringExtra("user_id")
-        val emailId = intent.getStringExtra("email_id")
-
-        val txtUserId = findViewById<TextView>(R.id.txtUserId)
-        val txtEmailId = findViewById<TextView>(R.id.txtEmailId)
-
-        txtUserId.text = "User ID: $userId"
-        txtEmailId.text = "User Email: $emailId"
-
-        txtUserId.isVisible = true
-        txtEmailId.isVisible = true
-
-        Log.d("Extra", userId.toString())
-        Log.d("Extra", emailId.toString())
-
-
-        val edtEmail: EditText = findViewById(R.id.edtLoginEmail)
-        edtEmail.setText(emailId)
+//        val userId = intent.getStringExtra("user_id")
+//        val emailId = intent.getStringExtra("email_id")
+//
+//        val txtUserId = findViewById<TextView>(R.id.txtUserId)
+//        val txtEmailId = findViewById<TextView>(R.id.txtEmailId)
+//
+//        txtUserId.text = "User ID: $userId"
+//        txtEmailId.text = "User Email: $emailId"
+//
+//        txtUserId.isVisible = true
+//        txtEmailId.isVisible = true
+//
+//        Log.d("Extra", userId.toString())
+//        Log.d("Extra", emailId.toString())
+//
+//
+//        val edtEmail: EditText = findViewById(R.id.edtLoginEmail)
+//        edtEmail.setText(emailId)
 
     }
 
