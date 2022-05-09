@@ -103,7 +103,7 @@ class RegisterActivity : AppCompatActivity() {
             email.error = null
         }
 
-        if (isEmailEmpty) {
+        if (isPasswordEmpty) {
             password.error = "Obrigatório"
             valid = false
         } else {
