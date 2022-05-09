@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -50,12 +51,34 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
     }
 
+    // Realizando a visualização do menu do topo
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.top_menu, menu)
+
+        return true
+    }
+
+    // Escutando os cliques dentro do menu do topo
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+
+        when (item.itemId) {
+            R.id.top_menu_logout -> {
+                logout()
+            }
+        }
+
+        return true
+    }
+
     private fun setFragmentTransition(fragment: Fragment) {
         val fragmentTransition = supportFragmentManager.beginTransaction()
         fragmentTransition.replace(R.id.main_frame_fragments, fragment)
         fragmentTransition.commit()
     }
 
+    // Escutando os cliques do menu do bottom
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_home -> {
@@ -63,9 +86,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
             R.id.menu_favorites -> {
                 setFragmentTransition(favoritesFragment)
-            }
-            R.id.menu_logout -> {
-                logout()
             }
         }
 
@@ -81,21 +101,20 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             FirebaseAuth.getInstance().signOut()
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
-            Toast.makeText(applicationContext,
-                "desconectado com sucesso", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext,
+                "desconectado com sucesso", Toast.LENGTH_SHORT
+            ).show()
         }
 
         builder.setNegativeButton("Não") { dialog, which ->
-            Toast.makeText(applicationContext,
-                "cancelado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext,
+                "cancelado", Toast.LENGTH_SHORT
+            ).show()
         }
 
-
         builder.show()
-    }
-
-    private fun showAlertDialog() {
-
     }
 
 //    inner class ShowMessageAsyncTask() : AsyncTask<String, Int, String>() {
