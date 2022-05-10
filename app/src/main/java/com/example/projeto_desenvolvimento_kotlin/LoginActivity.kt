@@ -1,7 +1,6 @@
 package com.example.projeto_desenvolvimento_kotlin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,18 +8,59 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import java.util.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var loginButton: Button
+    private lateinit var callbackManager: CallbackManager
+
+    private val EMAIL = "email"
+    private val USER_POSTS = "user_posts"
+    private val AUTH_TYPE = "rerequest"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        callbackManager = CallbackManager.Factory.create();
         auth = FirebaseAuth.getInstance()
+
+        val facebookLoginButton: LoginButton = findViewById(R.id.btnFacebookLogin)
+        facebookLoginButton.setPermissions(Arrays.asList(EMAIL))
+
+        facebookLoginButton.registerCallback(
+            callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    Log.d("Facebook", "facebook:onSuccess:$loginResult")
+                    handleFacebookAccessToken(loginResult.accessToken)
+
+                }
+
+                override fun onCancel() {
+                    Log.d("Facebook", "facebook:onCancel")
+                    // ...
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.d("Facebook", "facebook:onError", error)
+                    // ...
+                }
+            })
+
+
+
         loginButton = findViewById(R.id.btnLoginEnter)
         loginButton.setOnClickListener(this)
 
@@ -29,6 +69,36 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         findViewById<TextView>(R.id.txtLoginRegister).setOnClickListener {
             startActivity(registerIntent)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Pass the activity result back to the Facebook SDK
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d("Facebook", "handleFacebookAccessToken:$token")
+
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("Facebook", "signInWithCredential:success")
+                    val user = auth.currentUser
+
+                    val mainIntnet = Intent(this, MainActivity::class.java)
+                    startActivity(mainIntnet)
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("Facebook", "signInWithCredential:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     override fun onResume() {
