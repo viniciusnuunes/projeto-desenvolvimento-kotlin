@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Call as Call
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +20,27 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val remote = RetrofitClient.createService(TrendingService::class.java)
+        val call: Call<List<TrendingModel>> = remote.list()
+
+        // chamada sincrona
+        // val response = call.execute()
+
+        val response = call.enqueue(object : Callback<List<TrendingModel>> {
+            override fun onFailure(call: Call<List<TrendingModel>>, t: Throwable) {
+                val s = t.message
+            }
+
+            override fun onResponse(
+                call: Call<List<TrendingModel>>,
+                response: Response<List<TrendingModel>>
+            ) {
+                val s = response.body()
+            }
+        })
+
+
 
     }
 
