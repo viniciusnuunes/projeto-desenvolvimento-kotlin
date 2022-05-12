@@ -27,20 +27,20 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val remote = RetrofitClient.createService(TrendingService::class.java)
-        val call: Call<List<TrendingModel>> = remote.list()
+        val call: Call<TrendingModel> = remote.list()
 
         // chamada sincrona
         // val response = call.execute()
 
-        val response = call.enqueue(object : Callback<List<TrendingModel>> {
-            override fun onFailure(call: Call<List<TrendingModel>>, t: Throwable) {
+        val response = call.enqueue(object : Callback<TrendingModel> {
+            override fun onFailure(call: Call<TrendingModel>, t: Throwable) {
                 val s = t.message
                 Log.d("Retrofit", t.message.toString())
             }
 
             override fun onResponse(
                 call: Call<List<TrendingModel>>,
-                response: Response<List<TrendingModel>>
+                response: Response<TrendingModel>
             ) {
                 val s = response.body()
             }
