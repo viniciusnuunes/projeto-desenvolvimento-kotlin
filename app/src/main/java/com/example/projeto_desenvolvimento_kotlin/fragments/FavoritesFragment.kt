@@ -1,10 +1,11 @@
-package com.example.projeto_desenvolvimento_kotlin
+package com.example.projeto_desenvolvimento_kotlin.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.projeto_desenvolvimento_kotlin.R
 
 
 class FavoritesFragment : Fragment() {

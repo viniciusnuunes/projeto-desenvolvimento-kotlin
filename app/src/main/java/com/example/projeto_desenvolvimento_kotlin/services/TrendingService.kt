@@ -1,5 +1,6 @@
-package com.example.projeto_desenvolvimento_kotlin
+package com.example.projeto_desenvolvimento_kotlin.services
 
+import com.example.projeto_desenvolvimento_kotlin.models.TrendingModel
 import retrofit2.Call
 import retrofit2.http.GET
 

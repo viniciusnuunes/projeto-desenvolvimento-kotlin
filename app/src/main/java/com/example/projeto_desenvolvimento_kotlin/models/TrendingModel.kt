@@ -1,4 +1,4 @@
-package com.example.projeto_desenvolvimento_kotlin
+package com.example.projeto_desenvolvimento_kotlin.models
 
 class TrendingModel {
 
