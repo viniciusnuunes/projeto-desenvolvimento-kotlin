@@ -2,52 +2,38 @@ package com.example.projeto_desenvolvimento_kotlin.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto_desenvolvimento_kotlin.R
 import com.example.projeto_desenvolvimento_kotlin.RetrofitClient
+import com.example.projeto_desenvolvimento_kotlin.models.MovieModel
 import com.example.projeto_desenvolvimento_kotlin.models.TrendingModel
 import com.example.projeto_desenvolvimento_kotlin.services.TrendingService
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Call
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class HomeFragment : Fragment() {
-
+    private lateinit var remote: TrendingService
+    private lateinit var recyclerView: RecyclerView
+    private var movieList: MutableList<MovieModel> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val remote = RetrofitClient.createService(TrendingService::class.java)
-        val call: Call<TrendingModel> = remote.list()
+        remote = RetrofitClient.createService(TrendingService::class.java)
+
 
         // chamada sincrona
         // val response = call.execute()
 
-        val response = call.enqueue(object : Callback<TrendingModel> {
-            override fun onFailure(call: Call<TrendingModel>, t: Throwable) {
-                val s = t.message
-                Log.d("Retrofit", t.message.toString())
-            }
-
-            override fun onResponse(
-                call: Call<List<TrendingModel>>,
-                response: Response<TrendingModel>
-            ) {
-                val s = response.body()
-            }
-        })
-
-
-
+        getTrendingMovies()
     }
 
     override fun onCreateView(
@@ -57,5 +43,112 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+//        val listItems = listOf("1", "2", "3", "4", "5", "6", "7");
+
+
+        val myManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+        val myAdaapter: RecyclerView.Adapter<*> = recycleAdapter(movieList)
+        recyclerView = view.findViewById(R.id.rcTrendings)
+        recyclerView.layoutManager = myManager;
+        recyclerView.adapter = myAdaapter;
+        recyclerView.setHasFixedSize(true);
+    }
+
+    fun getTrendingMovies() {
+        val call: Call<TrendingModel> = remote.list()
+
+        val response = call.enqueue(object : Callback<TrendingModel> {
+            override fun onFailure(call: Call<TrendingModel>, t: Throwable) {
+                val s = t.message
+                Log.d("Retrofit", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<TrendingModel>,
+                response: Response<TrendingModel>
+            ) {
+                val s = response.body()
+                if (s != null) {
+                    for (i in s.results) {
+                        movieList.add(i)
+                    }
+
+                }
+            }
+        })
+
+        return response
+    }
+
+    class recycleAdapter(val data: List<MovieModel>): RecyclerView.Adapter<recycleAdapter.MyViewHolder>() {
+
+        class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+            val title: TextView = itemView.findViewById(R.id.itemTitle)
+            val originalTitle: TextView = itemView.findViewById(R.id.itemOriginalTitle)
+            val releaseDate: TextView = itemView.findViewById(R.id.itemReleaseDate)
+            val popularity: TextView = itemView.findViewById(R.id.itemPopularity)
+
+            fun bindData(item: MovieModel) {
+
+                this.title.text = ""
+                this.originalTitle.text = ""
+                this.releaseDate.text = ""
+                this.popularity.text = ""
+
+                title.text =  item.title
+                originalTitle.text = item.original_title
+                releaseDate.text = item.release_date
+                popularity.text = item.popularity.toString()
+
+            }
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item__movies, parent, false)
+
+            return MyViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+            holder.bindData(data[position])
+        }
+
+        override fun getItemCount(): Int {
+            return data.size
+        }
+    }
+
+//    class listAdapter(val data: List<MovieModel>) :
+//        RecyclerView.Adapter<listAdapter.MyViewHolder>() {
+//
+//        class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+//
+//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+//            val textView = LayoutInflater.from(parent.context)
+//                .inflate(R.layout.item__movies, parent, false) as TextView
+//            return MyViewHolder(textView)
+//
+//        }
+//
+//        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+//
+////            when (holder.itemId) {
+////                R.id.itemTitle -> {
+////
+////                }
+////            }
+//            holder.itemId
+//            holder.textView.text = data[position].title
+//
+//        }
+//
+//        override fun getItemCount() = data.size
+//    }
 
 }

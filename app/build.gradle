@@ -5,6 +5,7 @@ plugins {
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 32
@@ -38,6 +39,7 @@ android {
 }
 
 dependencies {
+    def epoxyVersion = "4.1.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -74,5 +76,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // Gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // Epox
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    // Add the annotation processor if you are using Epoxy's annotations (recommended)
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
 
 }

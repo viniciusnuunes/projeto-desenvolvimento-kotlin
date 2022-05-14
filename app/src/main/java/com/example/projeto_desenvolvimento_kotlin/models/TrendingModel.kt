@@ -1,9 +1,8 @@
 package com.example.projeto_desenvolvimento_kotlin.models
 
 class TrendingModel {
-
-    var original_title: String = ""
-    var title: String = ""
-    var overview: String = ""
-    var release_date: String = ""
+    var page: Int? = null
+    lateinit var results: List<MovieModel>
+    var total_pages: Int? = null
+    var total_results: Int? = null
 }
