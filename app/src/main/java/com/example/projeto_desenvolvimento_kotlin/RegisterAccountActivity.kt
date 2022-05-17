@@ -12,13 +12,13 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterAccountActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var currentUser: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_register_account)
 
         val edtEmail = findViewById<EditText>(R.id.edtRegisterEmail)
         val edtPassword = findViewById<EditText>(R.id.edtRegisterPassword)

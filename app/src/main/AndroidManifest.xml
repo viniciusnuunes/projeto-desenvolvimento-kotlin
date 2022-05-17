@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projeto_desenvolvimento_kotlin">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projetodesenvolvimentokotlin">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".RegisterAccountActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
@@ -42,10 +44,5 @@
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token" />
     </application>
-
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-
 
 </manifest>

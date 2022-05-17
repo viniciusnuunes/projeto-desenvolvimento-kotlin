@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.MovieFragment">
+
+    <EditText
+        android:id="@+id/edtMovieTitle"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:hint="Nome do filme" />
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/edtMovieEpisodes"-->
+    <!--        android:layout_width="300dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_margin="10dp"-->
+    <!--        android:hint="Episódios assistidos" />-->
+
+    <EditText
+        android:id="@+id/edtMovieEpisodes2"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:inputType="text|textMultiLine"
+        android:hint="Epísódios"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtMovieEpisodes3"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:hint="Episódios assistidos"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:maxLines="10"
+        android:minLines="6"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
