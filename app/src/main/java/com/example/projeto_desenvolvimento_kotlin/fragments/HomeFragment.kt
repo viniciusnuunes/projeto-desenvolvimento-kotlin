@@ -2,11 +2,11 @@ package com.example.projeto_desenvolvimento_kotlin.fragments
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto_desenvolvimento_kotlin.R
@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
 
         remote = RetrofitClient.createService(TrendingService::class.java)
 
-
         // chamada sincrona
         // val response = call.execute()
 
@@ -51,7 +50,7 @@ class HomeFragment : Fragment() {
 
 
         val myManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-        val myAdaapter: RecyclerView.Adapter<*> = recycleAdapter(movieList)
+        val myAdaapter: RecyclerView.Adapter<*> = HomeFragment.recycleAdapter(movieList)
         recyclerView = view.findViewById(R.id.rcTrendings)
         recyclerView.layoutManager = myManager;
         recyclerView.adapter = myAdaapter;
@@ -124,7 +123,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    class listAdapter(val data: List<MovieModel>) :
+    //    class listAdapter(val data: List<MovieModel>) :
 //        RecyclerView.Adapter<listAdapter.MyViewHolder>() {
 //
 //        class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
