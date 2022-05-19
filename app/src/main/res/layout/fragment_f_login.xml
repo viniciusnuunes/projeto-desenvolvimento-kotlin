@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FLoginFragment">
+
+    <ImageView
+        android:id="@+id/imageViewLogin"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/login_logo" />
+
+    <EditText
+        android:id="@+id/edtLoginEmail"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:hint="@string/prompt_email" />
+
+    <EditText
+        android:id="@+id/edtLoginPassword"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnFacebookLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/txtLoginForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:text="Esqueci minha senha"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/txtLoginRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:text="Criar uma conta"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btnLoginEnter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Entrar" />
+
+</LinearLayout>
