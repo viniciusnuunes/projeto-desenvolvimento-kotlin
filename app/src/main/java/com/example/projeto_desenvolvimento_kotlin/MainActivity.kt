@@ -8,9 +8,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.example.projeto_desenvolvimento_kotlin.fragments.FavoritesFragment
-import com.example.projeto_desenvolvimento_kotlin.fragments.TrendingsFragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.facebook.AccessToken
 import com.facebook.login.LoginManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,8 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var auth: FirebaseAuth
-    private lateinit var trendingsFragment: TrendingsFragment
-    private lateinit var favoritesFragment: FavoritesFragment
+    private lateinit var navController: NavController
     val db = FirebaseStorage.getInstance()
     val storageReferente = db.reference
 
@@ -33,14 +31,15 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.myFragmentContainerView) as NavHostFragment
+
+        navController = navHostFragment.navController
+
         auth = Firebase.auth
-        trendingsFragment = TrendingsFragment()
-        favoritesFragment = FavoritesFragment()
 
         bottomNavigationView = findViewById(R.id.navigation_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
-
-        setFragmentTransition(trendingsFragment)
     }
 
     override fun onStart() {
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         if (currentUser != null || isLoggedIn) {
             Log.d("User", "Usuário Autenticado")
-
+            navController.navigate(R.id.trendingsFragment)
         } else {
             Log.d("User", "Usuário não está Autenticado")
 
@@ -82,20 +81,20 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return true
     }
 
-    private fun setFragmentTransition(fragment: Fragment) {
-        val fragmentTransition = supportFragmentManager.beginTransaction()
-        fragmentTransition.replace(R.id.main_frame_fragments, fragment)
-        fragmentTransition.commit()
-    }
+//    private fun setFragmentTransition(fragment: Fragment) {
+//        val fragmentTransition = supportFragmentManager.beginTransaction()
+//        fragmentTransition.replace(R.id.main_frame_fragments, fragment)
+//        fragmentTransition.commit()
+//    }
 
     // Escutando os cliques do menu do bottom
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_home -> {
-                setFragmentTransition(trendingsFragment)
+                navController.navigate(R.id.action_favorites_to_trendings)
             }
             R.id.menu_favorites -> {
-                setFragmentTransition(favoritesFragment)
+                navController.navigate(R.id.action_trending_to_favorites)
             }
         }
 

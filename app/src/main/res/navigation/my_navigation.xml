@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/trendingsFragment">
+
+    <fragment
+        android:id="@+id/trendingsFragment"
+        android:name="com.example.projeto_desenvolvimento_kotlin.fragments.TrendingsFragment"
+        android:label="fragment_trendings"
+        tools:layout="@layout/fragment_trendings" >
+        <action
+            android:id="@+id/action_trending_to_favorites"
+            app:destination="@id/favoritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.projeto_desenvolvimento_kotlin.fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favorites_to_movie"
+            app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_favorites_to_trendings"
+            app:destination="@id/trendingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.example.projeto_desenvolvimento_kotlin.fragments.MovieFragment"
+        android:label="fragment_movie"
+        tools:layout="@layout/fragment_movie" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.projeto_desenvolvimento_kotlin.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/registerAccountActivity"
+        android:name="com.example.projeto_desenvolvimento_kotlin.RegisterAccountActivity"
+        android:label="activity_register_account"
+        tools:layout="@layout/activity_register_account" />
+</navigation>

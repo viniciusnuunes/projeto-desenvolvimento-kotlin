@@ -22,6 +22,7 @@ import retrofit2.Response
 class TrendingsFragment : Fragment() {
     private lateinit var remote: TrendingService
     private lateinit var recyclerView: RecyclerView
+    private lateinit var rootView: View
     private var movieList: MutableList<MovieModel> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,15 +41,23 @@ class TrendingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trendings, container, false)
+        rootView = inflater.inflate(R.layout.fragment_trendings, container, false)
+
+        showTrendgins(rootView)
+
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
 
-//        val listItems = listOf("1", "2", "3", "4", "5", "6", "7");
+    override fun onResume() {
+        super.onResume()
+        showTrendgins(rootView)
+    }
 
-
+    fun showTrendgins(view: View) {
         val myManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         val myAdaapter: RecyclerView.Adapter<*> = TrendingsFragment.recycleAdapter(movieList)
         recyclerView = view.findViewById(R.id.rcTrendings)
@@ -83,9 +92,10 @@ class TrendingsFragment : Fragment() {
         return response
     }
 
-    class recycleAdapter(val data: List<MovieModel>): RecyclerView.Adapter<recycleAdapter.MyViewHolder>() {
+    class recycleAdapter(val data: List<MovieModel>) :
+        RecyclerView.Adapter<recycleAdapter.MyViewHolder>() {
 
-        class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val title: TextView = itemView.findViewById(R.id.itemTitle)
             val originalTitle: TextView = itemView.findViewById(R.id.itemOriginalTitle)
             val releaseDate: TextView = itemView.findViewById(R.id.itemReleaseDate)
@@ -98,7 +108,7 @@ class TrendingsFragment : Fragment() {
                 this.releaseDate.text = ""
                 this.popularity.text = ""
 
-                title.text =  item.title
+                title.text = item.title
                 originalTitle.text = item.original_title
                 releaseDate.text = item.release_date
                 popularity.text = item.popularity.toString()
