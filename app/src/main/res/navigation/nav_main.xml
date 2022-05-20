@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/FLoginFragment">
+
+    <fragment
+        android:id="@+id/FLoginFragment"
+        android:name="com.example.projeto_desenvolvimento_kotlin.FLoginFragment"
+        android:label="fragment_f_login"
+        tools:layout="@layout/fragment_f_login" >
+        <action
+            android:id="@+id/action_FLoginFragment_to_FCreateAccountFragment"
+            app:destination="@id/FCreateAccountFragment" />
+        <action
+            android:id="@+id/action_FLoginFragment_to_FTrendingsFragment"
+            app:destination="@id/FTrendingsFragment"
+            app:popUpTo="@id/FLoginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/FCreateAccountFragment"
+        android:name="com.example.projeto_desenvolvimento_kotlin.FCreateAccountFragment"
+        android:label="fragment_f_create_account"
+        tools:layout="@layout/fragment_f_create_account" >
+        <action
+            android:id="@+id/action_FCreateAccountFragment_to_FTrendingsFragment"
+            app:destination="@id/FTrendingsFragment"
+            app:popUpTo="@id/FCreateAccountFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/FTrendingsFragment"
+        android:name="com.example.projeto_desenvolvimento_kotlin.FTrendingsFragment"
+        android:label="fragment_f_trendings"
+        tools:layout="@layout/fragment_f_trendings" >
+        <action
+            android:id="@+id/action_FTrendingsFragment_to_FFavoritesFragment"
+            app:destination="@id/FFavoritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FFavoritesFragment"
+        android:name="com.example.projeto_desenvolvimento_kotlin.FFavoritesFragment"
+        android:label="fragment_f_favorites"
+        tools:layout="@layout/fragment_f_favorites" >
+        <action
+            android:id="@+id/action_FFavoritesFragment_to_FTrendingsFragment"
+            app:destination="@id/FTrendingsFragment" />
+    </fragment>
+</navigation>
