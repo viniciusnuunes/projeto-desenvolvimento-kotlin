@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.projeto_desenvolvimento_kotlin.fragments.FavoritesFragment
-import com.example.projeto_desenvolvimento_kotlin.fragments.HomeFragment
+import com.example.projeto_desenvolvimento_kotlin.fragments.TrendingsFragment
 import com.facebook.AccessToken
 import com.facebook.login.LoginManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,7 +22,7 @@ import com.google.firebase.storage.FirebaseStorage
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var auth: FirebaseAuth
-    private lateinit var homeFragment: HomeFragment
+    private lateinit var trendingsFragment: TrendingsFragment
     private lateinit var favoritesFragment: FavoritesFragment
     val db = FirebaseStorage.getInstance()
     val storageReferente = db.reference
@@ -34,13 +34,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_main)
 
         auth = Firebase.auth
-        homeFragment = HomeFragment()
+        trendingsFragment = TrendingsFragment()
         favoritesFragment = FavoritesFragment()
 
         bottomNavigationView = findViewById(R.id.navigation_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
 
-        setFragmentTransition(homeFragment)
+        setFragmentTransition(trendingsFragment)
     }
 
     override fun onStart() {
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_home -> {
-                setFragmentTransition(homeFragment)
+                setFragmentTransition(trendingsFragment)
             }
             R.id.menu_favorites -> {
                 setFragmentTransition(favoritesFragment)
