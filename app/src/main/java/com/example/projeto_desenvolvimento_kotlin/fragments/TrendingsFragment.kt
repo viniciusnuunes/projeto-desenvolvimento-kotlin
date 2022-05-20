@@ -19,7 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class HomeFragment : Fragment() {
+class TrendingsFragment : Fragment() {
     private lateinit var remote: TrendingService
     private lateinit var recyclerView: RecyclerView
     private var movieList: MutableList<MovieModel> = arrayListOf()
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_trendings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
 
 
         val myManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-        val myAdaapter: RecyclerView.Adapter<*> = HomeFragment.recycleAdapter(movieList)
+        val myAdaapter: RecyclerView.Adapter<*> = TrendingsFragment.recycleAdapter(movieList)
         recyclerView = view.findViewById(R.id.rcTrendings)
         recyclerView.layoutManager = myManager;
         recyclerView.adapter = myAdaapter;
