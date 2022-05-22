@@ -43,8 +43,6 @@ class TrendingsFragment : Fragment() {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_trendings, container, false)
 
-        showTrendgins(rootView)
-
         return rootView
     }
 
@@ -54,16 +52,6 @@ class TrendingsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        showTrendgins(rootView)
-    }
-
-    fun showTrendgins(view: View) {
-        val myManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-        val myAdaapter: RecyclerView.Adapter<*> = TrendingsFragment.recycleAdapter(movieList)
-        recyclerView = view.findViewById(R.id.rcTrendings)
-        recyclerView.layoutManager = myManager;
-        recyclerView.adapter = myAdaapter;
-        recyclerView.setHasFixedSize(true);
     }
 
     fun getTrendingMovies() {
@@ -84,12 +72,22 @@ class TrendingsFragment : Fragment() {
                     for (i in s.results) {
                         movieList.add(i)
                     }
-
                 }
+                Log.d("Trendings", "Foram localizados " + movieList.size.toString() + " resultados")
+                showTrendgins(rootView)
             }
         })
 
         return response
+    }
+
+    fun showTrendgins(view: View) {
+        val myManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+        val myAdaapter: RecyclerView.Adapter<*> = TrendingsFragment.recycleAdapter(movieList)
+        recyclerView = view.findViewById(R.id.rcTrendings)
+        recyclerView.layoutManager = myManager;
+        recyclerView.adapter = myAdaapter;
+        recyclerView.setHasFixedSize(true);
     }
 
     class recycleAdapter(val data: List<MovieModel>) :
