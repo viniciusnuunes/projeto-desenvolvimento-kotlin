@@ -2,11 +2,12 @@ package com.example.projeto_desenvolvimento_kotlin.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto_desenvolvimento_kotlin.R
@@ -85,9 +86,10 @@ class TrendingsFragment : Fragment() {
         val myManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         val myAdaapter: RecyclerView.Adapter<*> = TrendingsFragment.recycleAdapter(movieList)
         recyclerView = view.findViewById(R.id.rcTrendings)
+        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         recyclerView.layoutManager = myManager;
         recyclerView.adapter = myAdaapter;
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
     }
 
     class recycleAdapter(val data: List<MovieModel>) :

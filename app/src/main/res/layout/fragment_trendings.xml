@@ -6,17 +6,6 @@
     android:orientation="vertical"
     tools:context=".fragments.TrendingsFragment">
 
-<!--    <com.airbnb.epoxy.EpoxyRecyclerView-->
-<!--        android:id="@+id/rvTrendings"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="'TESTE DO FRAGMENTO TRENDINGSS" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcTrendings"
         android:layout_width="match_parent"

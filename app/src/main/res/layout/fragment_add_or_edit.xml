@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.MovieFragment">
+    tools:context=".fragments.AddOrEditFragment">
 
     <EditText
         android:id="@+id/edtMovieTitle"
@@ -12,26 +12,11 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:hint="Nome do filme" />
+        android:hint="Nome do filme ou série" />
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/edtMovieEpisodes"-->
-    <!--        android:layout_width="300dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:layout_margin="10dp"-->
-    <!--        android:hint="Episódios assistidos" />-->
 
     <EditText
-        android:id="@+id/edtMovieEpisodes2"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:inputType="text|textMultiLine"
-        android:hint="Epísódios"
-        android:layout_gravity="center"/>
-
-    <EditText
-        android:id="@+id/edtMovieEpisodes3"
+        android:id="@+id/edtWatchedEpisodes"
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
@@ -42,5 +27,21 @@
         android:maxLines="10"
         android:minLines="6"
         android:scrollbars="vertical" />
+
+    <EditText
+        android:id="@+id/edtMovieRating"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:hint="Avaliação" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:text="Salvar" />
 
 </LinearLayout>
