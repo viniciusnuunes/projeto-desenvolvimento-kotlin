@@ -22,6 +22,7 @@ import com.example.projeto_desenvolvimento_kotlin.models.MovieModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.storage.FirebaseStorage
 import java.io.Serializable
+import kotlin.properties.Delegates
 
 
 class AddOrEditFragment : Fragment(), View.OnClickListener {
@@ -43,23 +44,26 @@ class AddOrEditFragment : Fragment(), View.OnClickListener {
     private lateinit var favoriteRating: String
     private lateinit var favoriteId: String
     private lateinit var favoriteDB: FavoriteDBModel
-
-    var isEditing: Boolean = false
-
+    var isEditing = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        favoriteTitle = arguments?.getString("FavoriteTitle").toString()
-        favoriteEpisodes = arguments?.getString("FavoriteEpisodes").toString()
-        favoriteRating = arguments?.getString("FavoriteRating").toString()
-        favoriteId = arguments?.getString("FavoriteId").toString()
-        favoriteDB = arguments?.getSerializable("FavoriteDB") as FavoriteDBModel
+        if (arguments?.getBoolean("isEditing", false) != false) {
+            favoriteTitle = arguments?.getString("FavoriteTitle").toString()
+            favoriteEpisodes = arguments?.getString("FavoriteEpisodes").toString()
+            favoriteRating = arguments?.getString("FavoriteRating").toString()
+            favoriteId = arguments?.getString("FavoriteId").toString()
+            favoriteDB = arguments?.getSerializable("FavoriteDB") as FavoriteDBModel
 
-        Log.d("FavoriteDB", favoriteDB.id.toString())
+            isEditing = true
+        }
 
-        Log.d("PutString", favoriteId + favoriteRating + favoriteEpisodes + favoriteTitle)
+
+
+
+
     }
 
     override fun onCreateView(
@@ -76,12 +80,10 @@ class AddOrEditFragment : Fragment(), View.OnClickListener {
         edtRating = rootView.findViewById(R.id.edtMovieRating)
         deleteButton = rootView.findViewById(R.id.btnDelete)
 
-
-        if (favoriteTitle != null) {
+        if (isEditing) {
             edtTitle.setText(favoriteTitle)
             edtEpisodes.setText(favoriteEpisodes)
             edtRating.setText(favoriteRating)
-            isEditing = true
         }
 
         saveButton.setOnClickListener(this)

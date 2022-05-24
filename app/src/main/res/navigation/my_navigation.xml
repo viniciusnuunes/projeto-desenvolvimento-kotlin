@@ -47,5 +47,9 @@
         <action
             android:id="@+id/action_add_to_favorites"
             app:destination="@id/favoritesFragment" />
+        <argument
+            android:name="isEditing"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 </navigation>

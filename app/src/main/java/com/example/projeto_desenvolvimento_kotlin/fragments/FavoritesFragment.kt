@@ -111,12 +111,13 @@ class FavoritesFragment : Fragment(), View.OnClickListener {
                 val rating = favoritesList[position].rating
 
                 val args = Bundle()
-
 //                arguments = Bundle().apply {
 //                    putString("FavoriteTitle", title)
 //                    putString("FavoriteEpisodes", episodes)
 //                    putString("FavoriteRating", rating)
 //                    putString("FavoriteId", favoritesList[position].id)
+//                    putSerializable("FavoriteDB", favoritesList[position])
+//                    putBoolean("isEditable", true)
 //                }
 
                 args.putString("FavoriteTitle", title)
@@ -124,6 +125,7 @@ class FavoritesFragment : Fragment(), View.OnClickListener {
                 args.putString("FavoriteRating", rating)
                 args.putString("FavoriteId", favoritesList[position].id)
                 args.putSerializable("FavoriteDB", favoritesList[position])
+                args.putBoolean("isEditing", true)
 
 
 
